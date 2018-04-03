@@ -58,6 +58,10 @@ In addition to providing resiliency improvements, ReFS introduces new features f
 ReFS is designed to support extremely large data sets--millions of terabytes--without negatively impacting performance, achieving greater scale than prior file systems. 
 
 ## Supported deployments
+Microsoft has developed NTFS specifically for general-purpose use with a wide range of configurations and workloads, however for customers specially requiring the availability, resiliency, and/or scale which ReFS provides, Microsoft supports ReFS for use under the following configurations and scenarios.
+
+>[!NOTE]
+>All ReFS supported configurations must use Windows HLK certified hardware and meet application requirements. 
 
 ### Storage Spaces Direct
 
@@ -67,19 +71,24 @@ Deploying ReFS on Storage Spaces Direct is recommended for virtualized workloads
 - Integrity-streams, online repair, and alternate data copies enable ReFS and Storage Spaces Direct to jointly to detect and correct corruptions within both metadata and data. 
 - ReFS provides the functionality to scale and support large data sets. 
 
-### Storage Spaces with SAS drive enclosures
+### Storage Spaces
 
-Deploying ReFS on Storage Spaces with shared SAS enclosures is suitable for hosting archival data and storing user documents:
 - Integrity-streams, online repair, and alternate data copies enable ReFS and Storage Spaces to jointly to detect and correct corruptions within both metadata and data. 
 - Storage Spaces deployments can also utilize block-cloning and the scalability offered in ReFS.
+- Deploying ReFS on Storage Spaces with shared SAS enclosures is suitable for hosting archival data and storing user documents.
+
+>[!NOTE]
+>Storage Spaces virtual disks support local non-removable direct-attached disks via Bus Types SATA, SAS, NVME, or attached via HBA (aka RAID controller in pass-through mode).
 
 ### Basic disks
 
 Deploying ReFS on basic disks is best suited for applications that implement their own software resiliency and availibility solutions. 
-- Applications that introduce their own resiliency and availability software solutions can leverage integrity-streams, block-cloning, and the ability to scale and support large data sets. 
+- Applications that introduce their own resiliency and availability software solutions can leverage integrity-streams, block-cloning, and the ability to scale and support large data sets.*
+
+*Contact application vendor for support details.
 
 >[!NOTE]
->ReFS is supported with Storage Spaces, Storage Spaces Direct, and non-removable direct attached drives. ReFS is not supported with hardware virtualized storage such as SANs or RAID controllers in non-passthrough mode. USB drives are also not supported.
+>Basic Disks include local non-removable direct-attached via Bus Types SATA, SAS, NVME, or RAID.
 
 ## Feature comparison
 
@@ -140,6 +149,7 @@ Deploying ReFS on basic disks is best suited for applications that implement the
 | Page file support | No | Yes |
 | Supported on removable media | No | Yes |
 | NTFS storage tiers | No | Yes |
+
 
 ## See also
 
